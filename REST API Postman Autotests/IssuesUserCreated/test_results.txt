@@ -1,0 +1,8 @@
+PASS
+Status code is 201
+PASS
+Response time is less than 500ms
+PASS
+Headers are valid
+FAIL
+Schema is valid | AssertionError: expected data to satisfy schema but found following errors: data.first_name should be equal to one of the allowed values, data.last_name should be equal to one of the allowed values, data.company_id should be equal to one of the allowed values
