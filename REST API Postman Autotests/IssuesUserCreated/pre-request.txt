@@ -1,0 +1,3 @@
+pm.collectionVariables.set("first_name", "Pifagor");
+pm.collectionVariables.set( "last_name", "Samosskiy");
+pm.collectionVariables.set( "company_id", 3);
