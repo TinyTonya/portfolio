@@ -1,0 +1,53 @@
+let first_name = pm.collectionVariables.get("first_name");
+let last_name = pm.collectionVariables.get("last_name");
+let company_id = parseInt(pm.collectionVariables.get("company_id"));
+
+// статус-код
+pm.test
+pm.test("Status code is 201", function () {
+    pm.response.to.have.status(201);
+});
+
+// отклик
+pm.test("Response time is less than 500ms", function () {
+    pm.expect(pm.response.responseTime).to.be.below(500);
+});
+
+//хедеры
+pm.test("Headers are valid", function() {
+pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');
+pm.expect(pm.response.headers.get('Connection')).to.eql('keep-alive')
+});
+
+//body
+let schema = 
+{
+  "type": "object",
+  "properties": {
+    "first_name": {
+      "type": "string",
+      "enum": [ first_name ]
+    },
+    "last_name": {
+      "type": "string",
+      "enum": [ last_name ]
+    },
+    "company_id": {
+      "type": "integer",
+      "enum": [ company_id ]
+    },
+    "user_id": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "last_name",
+    "user_id"
+  ]
+};
+pm.test('Schema is valid', function() {
+pm.response.to.have.jsonSchema(schema); 
+});
+
+//clear variables
+pm.collectionVariables.clear();
